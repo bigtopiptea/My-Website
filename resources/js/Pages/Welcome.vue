@@ -119,11 +119,14 @@ export default {
                         </div>
                     </div>
                     <div v-else>
-                        <Link :href="route('login')" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in
+                        <Link :href="route('login')"
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        Log in
                         </Link>
 
                         <Link v-if="canRegister" :href="route('register')"
-                            class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</Link>
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        Register</Link>
                     </div>
                 </div>
             </div>
