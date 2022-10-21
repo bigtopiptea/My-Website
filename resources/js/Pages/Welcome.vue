@@ -1,12 +1,3 @@
-<!-- <script setup>
-
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
-});
-</script> -->
 <script>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
@@ -28,6 +19,9 @@ export default {
         dropdown() {
             this.isOpen = !this.isOpen;
         },
+        logout() {
+            Inertia.post(route('logout'));
+        }
     }
 }
 </script>
@@ -114,9 +108,11 @@ export default {
                             <a href="#"
                                 class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700"
                                 role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700"
-                                role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            <form>
+                                <button @submit.prevent="logout"
+                                    class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700"
+                                    role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</button>
+                            </form>
                         </div>
                     </div>
 
