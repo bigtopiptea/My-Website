@@ -110,9 +110,8 @@ export default {
                                 class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700"
                                 role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                             <form method="POST" @submit.prevent="logout">
-                                <a
-                                    class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700"
-                                    role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                                <Link as="button" class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700"
+                                    role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</Link>
                             </form>
                         </div>
                     </div>
