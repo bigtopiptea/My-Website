@@ -1,11 +1,13 @@
 <script>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
+import NavbarLink from './NavbarLink.vue';
 
 export default {
     components: {
         Head,
-        Link
+        Link,
+        NavbarLink
     },
     props: {
         canLogin: Boolean,
@@ -59,18 +61,77 @@ export default {
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <!-- <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                                aria-current="page">Dashboard</a>
+                            <div class="dropdown relative inline-block">
+                                <button
+                                    class="dropbtn text-white flex px-3 py-2 hover:bg-gray-700 rounded-md text-sm font-medium uppercase">Shop
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-4 h-4 ml-1 mt-0.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
 
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
 
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                                <div class="dropdown-content hidden absolute bg-white shadow-md rounded-md">
+                                    <div class="px-3 py-4">
+                                        <span class="text-black uppercase text-md font-bold block px-4 mt-2">Mens</span>
+                                        <div>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                1</a>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                2</a>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                3</a>
+                                        </div>
+                                        <span
+                                            class="text-black uppercase text-md font-bold block px-4 mt-2">Children</span>
+                                        <div>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                1</a>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                2</a>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                3</a>
+                                        </div>
+                                    </div>
+                                    <div class="px-3 py-4">
+                                        <span
+                                            class="text-black uppercase text-md font-bold block px-4 mt-2">Womens</span>
+                                        <div>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                1</a>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                2</a>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                3</a>
+                                        </div>
+                                        <span
+                                            class="text-black uppercase text-md font-bold block px-4 mt-2">Accessories</span>
+                                        <div>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                1</a>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                2</a>
+                                            <a class="block px-4 hover:text-gray-600 uppercase text-sm hover:rounded-md"
+                                                href="#">Link
+                                                3</a>
+                                        </div>
+                                    </div>
 
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a> -->
+                                </div>
+                            </div>
+                            <!-- <NavbarLink :href="route('men')">Men</NavbarLink> -->
                         </div>
                     </div>
                 </div>
@@ -110,7 +171,8 @@ export default {
                                 class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700"
                                 role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                             <form method="POST" @submit.prevent="logout">
-                                <a  class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">
+                                <a class="block px-4 py-2 text-sm hover:bg-gray-800 hover:text-white hover:rounded-md text-gray-700"
+                                    role="menuitem" tabindex="-1" id="user-menu-item-2">
                                     <button>Sign out</button>
                                 </a>
                             </form>
@@ -150,20 +212,10 @@ export default {
             </div>
         </div>
     </nav>
-    <!-- 
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</Link>
-
-            <template v-else>
-                <Link :href="route('login')" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</Link>
-
-                <Link v-if="canRegister" :href="route('register')" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</Link>
-            </template>
-        </div> 
-        
-
-       
-    </div>
-    -->
 </template>
+
+<style>
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+</style>
