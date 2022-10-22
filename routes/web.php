@@ -19,11 +19,6 @@ use Inertia\Inertia;
 
 Route::get('/', [ShopController::class, 'index'])->name('shop');
 
-Route::middleware(['role:user'])->group(function () {
-   
-});
-
-
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:admin'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });

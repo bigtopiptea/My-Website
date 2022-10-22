@@ -15,6 +15,14 @@ class ShopController extends Controller
      */
     public function index()
     {
+        if (auth()->check()) {
+
+            if (auth()->user()->hasRole('admin')) {
+                return redirect()->intended('/dashboard');
+            }
+        }
+
+
         return Inertia::render('Shop/Shop');
     }
 
