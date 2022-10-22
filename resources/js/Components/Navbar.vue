@@ -2,16 +2,17 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarLink from './NavbarLink.vue';
+import Modal from './Modal.vue';
 
 export default {
     components: {
-        Head,
-        Link,
-        NavbarLink
-    },
+    Head,
+    Link,
+    NavbarLink,
+    Modal
+},
     props: {
-        canLogin: Boolean,
-        canRegister: Boolean,
+        show: Boolean
     },
     data() {
         return {
@@ -24,7 +25,7 @@ export default {
         },
         logout() {
             Inertia.post(route('logout'));
-        }
+        },
     }
 }
 </script>
@@ -33,7 +34,7 @@ export default {
 
     <Head title="Welcome" />
     <nav class="bg-gray-800">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="mx-auto px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
@@ -53,14 +54,8 @@ export default {
                     </button>
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="flex flex-shrink-0 items-center">
-                        <img class="block h-8 w-auto lg:hidden"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-                        <img class="hidden h-8 w-auto lg:block"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-                    </div>
                     <div class="hidden sm:ml-6 sm:block">
-                        <div class="flex space-x-4">
+                        <div class="flex">
                             <div class="dropdown relative inline-block">
                                 <button
                                     class="dropbtn text-white flex px-3 py-2 hover:bg-gray-700 rounded-md text-sm font-medium uppercase">Shop
@@ -70,8 +65,6 @@ export default {
                                             d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                     </svg>
                                 </button>
-
-
                                 <div class="dropdown-content hidden absolute bg-white shadow-md rounded-md">
                                     <div class="px-3 py-4">
                                         <span class="text-black uppercase text-md font-bold block px-4 mt-2">Mens</span>
@@ -131,10 +124,12 @@ export default {
 
                                 </div>
                             </div>
+
                             <!-- <NavbarLink :href="route('men')">Men</NavbarLink> -->
                         </div>
                     </div>
                 </div>
+
                 <div v-if="$page.props.user"
                     class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <button type="button"
@@ -181,36 +176,15 @@ export default {
 
                 </div>
                 <div v-else>
-                    <Link :href="route('login')"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm uppercase font-bold">
-                    Login
-                    </Link>
-
-                    <Link :href="route('register')"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm uppercase font-bold">
-                    Register</Link>
+                    <button @click="openModal"
+                        class="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm uppercase font-medium">
+                        Sign in / Create Account
+                    </button>
                 </div>
-
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="sm:hidden" id="mobile-menu">
-            <div class="space-y-1 px-2 pt-2 pb-3">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-                    aria-current="page">Dashboard</a>
 
-                <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
-                <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-                <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
-            </div>
-        </div>
     </nav>
 </template>
 
