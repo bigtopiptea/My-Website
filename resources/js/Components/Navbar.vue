@@ -2,15 +2,15 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarLink from './NavbarLink.vue';
-import Modal from './Modal.vue';
+import AuthModal from '../Components/AuthModal.vue';
 
 export default {
     components: {
-    Head,
-    Link,
-    NavbarLink,
-    Modal
-},
+        Head,
+        Link,
+        NavbarLink,
+        AuthModal
+    },
     props: {
         show: Boolean
     },
@@ -176,15 +176,11 @@ export default {
 
                 </div>
                 <div v-else>
-                    <button @click="openModal"
-                        class="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm uppercase font-medium">
-                        Sign in / Create Account
-                    </button>
+                    <AuthModal />
+                    
                 </div>
             </div>
         </div>
-
-
     </nav>
 </template>
 
