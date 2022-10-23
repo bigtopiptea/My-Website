@@ -11,10 +11,8 @@ defineProps({
 <template>
 
     <Head :title="title" />
-
     <Navbar />
-    <AuthModal :errors="errors" />
-
+    
     <main>
         <slot />
     </main>

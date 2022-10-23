@@ -5,7 +5,7 @@ defineProps({
 });
 </script>
 <template>
-    <ShopLayout :errors="errors">
+    <ShopLayout :errors="errors" :user="$page.props.user">
         <h1>Test</h1>
     </ShopLayout>
 </template>

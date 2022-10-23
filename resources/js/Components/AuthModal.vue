@@ -11,7 +11,8 @@
                     {{ status }}
                 </div>
 
-                <div v-if="form.errors.email"  class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full"
+                <div v-if="form.errors.email"
+                    class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full"
                     role="alert">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle"
                         class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +65,7 @@
     </div>
 
     <button @click="modalHandler(true)"
-        class="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm uppercase font-medium">
+        class="hover:bg-gray-700 text-white py-2 px-3 rounded-md text-sm uppercase font-medium">
         Sign in / Create Account
     </button>
 </template>
