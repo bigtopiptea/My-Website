@@ -66,7 +66,7 @@
 
     <button @click="modalHandler(true)"
         class="hover:bg-gray-700 text-white py-2 px-3 rounded-md text-sm uppercase font-medium">
-        Sign in / Create Account
+        Sign in / Register
     </button>
 </template>
 
