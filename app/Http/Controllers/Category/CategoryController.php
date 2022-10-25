@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Shop;
+namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ShopController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,16 +15,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        if (auth()->check()) {
-
-            if (auth()->user()->hasRole('admin')) {
-                return redirect()->intended('/dashboard');
-            }
-        }
-
-        $products = Product::all();
-
-        return Inertia::render('Shop/Shop', ['products' => $products]);
+        return Inertia::render('Category/Index');
     }
 
     /**
