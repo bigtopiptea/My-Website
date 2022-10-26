@@ -22,7 +22,7 @@ use Inertia\Inertia;
 Route::get('/', [ShopController::class, 'index'])->name('shop');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admin/products', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('category.index');
 });

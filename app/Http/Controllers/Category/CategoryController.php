@@ -15,6 +15,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        if (auth()->check()) {
+
+            if (auth()->user()->hasRole('user')) {
+                return redirect()->intended('/');
+            }
+        }
+        
         return Inertia::render('Category/Index');
     }
 

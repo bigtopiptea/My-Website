@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +16,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Product/Index');
+        if (auth()->check()) {
+
+            if (auth()->user()->hasRole('user')) {
+                return redirect()->intended('/');
+            }
+        }
+
+        $products = Product::all();
+
+        return Inertia::render('Product/Index', ['products' => $products]);
     }
 
     /**
