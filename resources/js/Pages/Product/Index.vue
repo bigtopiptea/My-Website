@@ -1,8 +1,14 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { Inertia } from '@inertiajs/inertia';
+
 defineProps({
     products: Object
 });
+
+const deleteProduct = (product_id) => {
+    Inertia.delete(`/admin/product/${product_id}`);
+}
 </script>
 
 <template>
@@ -88,7 +94,9 @@ defineProps({
                                                 ${{ product.product_price }}</td>
                                             <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                                                 <a href="#"
-                                                    class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                                    class="text-blue-600 dark:text-blue-500 uppercase font-bold hover:underline">Edit</a>
+                                                <button @click="deleteProduct(product.id)"
+                                                    class="text-red-600 dark:text-red-500 ml-5 uppercase font-bold hover:underline">Delete</button>
                                             </td>
                                         </tr>
                                     </tbody>

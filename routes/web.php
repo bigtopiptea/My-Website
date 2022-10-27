@@ -23,6 +23,10 @@ Route::get('/', [ShopController::class, 'index'])->name('shop');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    //product
     Route::get('/admin/products', [ProductController::class, 'index'])->name('product.index');
+    Route::delete('/admin/product/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+
     Route::get('/admin/categories', [CategoryController::class, 'index'])->name('category.index');
 });
